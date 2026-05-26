@@ -1,0 +1,1279 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>LOCAL K GUIDE</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+
+:root{
+    --bg:#F1F3E0;
+    --sub:#D2DCB6;
+    --accent:#A1BC98;
+    --deep:#778873;
+    --ink:#2F352E;
+    --white:#ffffff;
+
+    --shadow:
+    rgba(0,0,0,0.03) 0 0 0 1px,
+    rgba(0,0,0,0.06) 0 4px 12px;
+
+    --radius-sm:12px;
+    --radius-md:20px;
+    --radius-full:999px;
+}
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+html{
+    scroll-behavior:smooth;
+}
+
+body{
+    font-family:'Inter','Noto Sans JP',sans-serif;
+    background:var(--bg);
+    color:var(--ink);
+    line-height:1.6;
+}
+
+a{
+    text-decoration:none;
+    color:inherit;
+}
+
+img{
+    width:100%;
+    display:block;
+}
+
+.container{
+    width:min(1200px, calc(100% - 32px));
+    margin:0 auto;
+}
+
+/* =========================
+NAV
+========================= */
+
+.top-nav{
+    position:fixed;
+    top:0;
+    left:0;
+    width:100%;
+    z-index:1000;
+
+    background:rgba(241,243,224,0.92);
+    backdrop-filter:blur(14px);
+
+    border-bottom:1px solid rgba(119,136,115,0.15);
+}
+
+.nav-inner{
+    height:80px;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+}
+
+.logo{
+    font-size:1.15rem;
+    font-weight:700;
+}
+
+.logo span{
+    color:var(--deep);
+}
+
+.nav-menu{
+    display:flex;
+    gap:28px;
+    font-size:0.95rem;
+    font-weight:500;
+}
+
+.nav-menu a{
+    position:relative;
+    padding-bottom:4px;
+}
+
+.nav-menu a::after{
+    content:'';
+    position:absolute;
+    left:0;
+    bottom:0;
+    width:0;
+    height:2px;
+    background:var(--deep);
+    transition:0.25s;
+}
+
+.nav-menu a:hover::after{
+    width:100%;
+}
+
+/* =========================
+BUTTONS
+========================= */
+
+.btn{
+    border:none;
+    border-radius:14px;
+    padding:14px 22px;
+    font-size:0.95rem;
+    font-weight:600;
+    cursor:pointer;
+    transition:0.2s ease;
+}
+
+.btn:hover{
+    transform:translateY(-1px);
+}
+
+.btn-primary{
+    background:var(--deep);
+    color:white;
+}
+
+.btn-secondary{
+    background:white;
+    color:var(--ink);
+    border:1px solid rgba(119,136,115,0.15);
+}
+
+/* =========================
+HERO
+========================= */
+
+.hero{
+    min-height:100vh;
+    padding-top:120px;
+    display:flex;
+    align-items:center;
+}
+
+.hero-grid{
+    display:grid;
+    grid-template-columns:1.1fr 1fr;
+    gap:32px;
+    align-items:center;
+}
+
+.hero-copy h1{
+    font-size:clamp(2.5rem,5vw,4.5rem);
+    line-height:1.08;
+    margin-bottom:24px;
+    letter-spacing:-2px;
+}
+
+.hero-copy p{
+    font-size:1.05rem;
+    color:#5f6a5b;
+    margin-bottom:32px;
+    max-width:560px;
+}
+
+.badge{
+    display:inline-flex;
+    align-items:center;
+    padding:6px 12px;
+    border-radius:999px;
+    background:var(--sub);
+    font-size:0.76rem;
+    font-weight:700;
+    margin-bottom:16px;
+}
+
+.search-bar{
+    background:white;
+    border-radius:999px;
+    padding:8px;
+    display:flex;
+    align-items:center;
+    gap:8px;
+    box-shadow:var(--shadow);
+    margin-bottom:28px;
+}
+
+.search-field{
+    flex:1;
+    padding:10px 18px;
+    border-right:1px solid rgba(119,136,115,0.14);
+}
+
+.search-field:last-child{
+    border-right:none;
+}
+
+.search-label{
+    font-size:0.72rem;
+    font-weight:700;
+}
+
+.search-value{
+    font-size:0.9rem;
+    color:#5f6a5b;
+}
+
+.search-button{
+    width:54px;
+    height:54px;
+    border:none;
+    border-radius:50%;
+    background:var(--deep);
+    color:white;
+    font-size:1.2rem;
+    cursor:pointer;
+}
+
+.cta-group{
+    display:flex;
+    gap:14px;
+    flex-wrap:wrap;
+}
+
+.hero-visual{
+    position:relative;
+}
+
+.hero-card{
+    border-radius:32px;
+    overflow:hidden;
+    background:white;
+    box-shadow:var(--shadow);
+}
+
+.hero-card img{
+    height:680px;
+    object-fit:cover;
+}
+
+.floating-card{
+    position:absolute;
+    left:-24px;
+    bottom:40px;
+
+    width:260px;
+
+    background:rgba(255,255,255,0.95);
+    border-radius:24px;
+    padding:18px;
+
+    box-shadow:var(--shadow);
+}
+
+.floating-card h4{
+    margin-bottom:8px;
+}
+
+/* =========================
+SECTIONS
+========================= */
+
+section{
+    padding:72px 0;
+}
+
+.section-head{
+    display:flex;
+    justify-content:space-between;
+    align-items:end;
+    gap:24px;
+    margin-bottom:28px;
+}
+
+.section-head h2{
+    font-size:2rem;
+    letter-spacing:-0.6px;
+}
+
+.section-head p{
+    max-width:520px;
+    color:#5f6a5b;
+}
+
+/* =========================
+CARDS
+========================= */
+
+.card-grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
+    gap:22px;
+}
+
+.travel-card{
+    background:white;
+    border-radius:22px;
+    overflow:hidden;
+    box-shadow:var(--shadow);
+    transition:0.25s ease;
+}
+
+.travel-card:hover{
+    transform:translateY(-4px);
+}
+
+.travel-card img{
+    height:220px;
+    object-fit:cover;
+}
+
+.card-content{
+    padding:18px;
+}
+
+.card-content h3{
+    margin-bottom:8px;
+    font-size:1.1rem;
+}
+
+.card-content p{
+    color:#60695c;
+    font-size:0.92rem;
+}
+
+/* =========================
+TRANSIT
+========================= */
+
+.transit-wrap{
+    background:linear-gradient(
+        135deg,
+        rgba(210,220,182,0.55),
+        rgba(161,188,152,0.22)
+    );
+
+    border-radius:32px;
+    padding:34px;
+}
+
+.route-bar{
+    background:white;
+    border-radius:18px;
+    padding:18px 20px;
+
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:28px;
+
+    box-shadow:var(--shadow);
+}
+
+.route-status{
+    background:var(--deep);
+    color:white;
+    padding:10px 16px;
+    border-radius:14px;
+    font-size:0.88rem;
+    font-weight:600;
+}
+
+.timeline{
+    display:grid;
+    gap:18px;
+}
+
+.timeline-item{
+    display:flex;
+    gap:18px;
+
+    background:rgba(255,255,255,0.8);
+
+    padding:18px;
+    border-radius:20px;
+}
+
+.timeline-number{
+    width:44px;
+    height:44px;
+
+    border-radius:50%;
+    background:var(--deep);
+
+    color:white;
+
+    display:flex;
+    align-items:center;
+    justify-content:center;
+
+    font-weight:700;
+
+    flex-shrink:0;
+}
+
+/* =========================
+INFO BOX
+========================= */
+
+.info-panel{
+    margin-top:22px;
+
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:16px;
+}
+
+.info-box{
+    background:white;
+    border-radius:20px;
+    padding:18px;
+    box-shadow:var(--shadow);
+}
+
+/* =========================
+TRANSLATION CARD
+========================= */
+
+.translation-card{
+    background:white;
+    border-radius:28px;
+    padding:28px;
+    text-align:center;
+    margin-top:28px;
+    box-shadow:var(--shadow);
+}
+
+.translation-card .jp{
+    font-size:2rem;
+    font-weight:700;
+    margin-bottom:10px;
+}
+
+.translation-card .kr{
+    color:#5f6a5b;
+}
+
+/* =========================
+FOOTER
+========================= */
+
+.footer{
+    background:#DCE4C5;
+    padding:60px 0 120px;
+    margin-top:60px;
+}
+
+.footer-grid{
+    display:grid;
+    grid-template-columns:2fr 1fr 1fr;
+    gap:32px;
+}
+
+.footer h3{
+    margin-bottom:16px;
+}
+
+.footer p,
+.footer li{
+    color:#5f6a5b;
+}
+
+.footer ul{
+    list-style:none;
+    display:grid;
+    gap:10px;
+}
+
+/* =========================
+BOTTOM MENU
+========================= */
+
+.quick-bottom{
+    position:fixed;
+    bottom:18px;
+    left:50%;
+    transform:translateX(-50%);
+
+    width:min(92%,720px);
+
+    background:rgba(255,255,255,0.96);
+
+    border-radius:24px;
+
+    padding:14px 18px;
+
+    display:flex;
+    justify-content:space-between;
+
+    box-shadow:
+    rgba(0,0,0,0.08) 0 10px 28px;
+
+    backdrop-filter:blur(14px);
+
+    z-index:999;
+}
+
+.quick-item{
+    text-align:center;
+    font-size:0.8rem;
+    color:#5f6a5b;
+}
+
+.quick-item span{
+    display:block;
+    font-size:1.2rem;
+    margin-bottom:6px;
+}
+
+/* =========================
+RESPONSIVE
+========================= */
+
+@media(max-width:900px){
+
+    .hero-grid{
+        grid-template-columns:1fr;
+    }
+
+    .hero-card img{
+        height:500px;
+    }
+
+    .floating-card{
+        position:relative;
+        left:0;
+        bottom:auto;
+        width:100%;
+        margin-top:18px;
+    }
+
+    .nav-menu{
+        display:none;
+    }
+
+    .footer-grid{
+        grid-template-columns:1fr;
+    }
+}
+
+@media(max-width:640px){
+
+    section{
+        padding:56px 0;
+    }
+
+    .search-bar{
+        flex-direction:column;
+        border-radius:24px;
+    }
+
+    .search-field{
+        width:100%;
+        border-right:none;
+        border-bottom:1px solid rgba(119,136,115,0.14);
+    }
+
+    .search-field:last-of-type{
+        border-bottom:none;
+    }
+
+    .search-button{
+        width:100%;
+        border-radius:16px;
+    }
+
+    .hero-copy h1{
+        font-size:2.8rem;
+    }
+
+    .section-head{
+        flex-direction:column;
+        align-items:flex-start;
+    }
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAV -->
+
+<header class="top-nav">
+
+    <div class="container nav-inner">
+
+        <div class="logo">
+            LOCAL <span>K GUIDE</span>
+        </div>
+
+        <nav class="nav-menu">
+            <a href="#discover">Discover</a>
+            <a href="#transit">Transit</a>
+            <a href="#onsite">On-site</a>
+            <a href="#sos">SOS</a>
+        </nav>
+
+        <button class="btn btn-secondary">
+            日本語
+        </button>
+
+    </div>
+
+</header>
+
+<!-- HERO -->
+
+<section class="hero">
+
+    <div class="container hero-grid">
+
+        <div class="hero-copy">
+
+            <div class="badge">
+                LOCAL TRAVEL SUPPORT
+            </div>
+
+            <h1>
+                韓国のローカル旅行を、
+                <br>
+                もっと迷わず。
+            </h1>
+
+            <p>
+                대전과 강원도를 여행하는 일본인 개별 관광객을 위한
+                로컬 관광 지원 플랫폼.
+                이동 불안, 언어 장벽, 지역 교통 문제를
+                직관적인 UX로 해결합니다.
+            </p>
+
+            <div class="search-bar">
+
+                <div class="search-field">
+                    <div class="search-label">WHERE</div>
+                    <div class="search-value">
+                        Gangwon-do / Daejeon
+                    </div>
+                </div>
+
+                <div class="search-field">
+                    <div class="search-label">THEME</div>
+                    <div class="search-value">
+                        K-Drama · K-POP · Local
+                    </div>
+                </div>
+
+                <div class="search-field">
+                    <div class="search-label">STYLE</div>
+                    <div class="search-value">
+                        FIT Travelers
+                    </div>
+                </div>
+
+                <button class="search-button">
+                    ⌕
+                </button>
+
+            </div>
+
+            <div class="cta-group">
+
+                <button class="btn btn-primary">
+                    여행 시작하기
+                </button>
+
+                <button class="btn btn-secondary">
+                    지역 둘러보기
+                </button>
+
+            </div>
+
+        </div>
+
+        <div class="hero-visual">
+
+            <div class="hero-card">
+
+                <img src="https://images.unsplash.com/photo-1506744038136-46273834b3fb?q=80&w=1600&auto=format&fit=crop">
+
+            </div>
+
+            <div class="floating-card">
+
+                <h4>실시간 이동 가이드</h4>
+
+                <p>
+                    “현재 정상 경로 이동 중입니다.”
+                    <br>
+                    다음 버스까지 8분 남음
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- DISCOVER -->
+
+<section id="discover">
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div>
+
+                <div class="badge">
+                    DISCOVER TRAVEL
+                </div>
+
+                <h2>
+                    일본人 관광객 추천 로컬 코스
+                </h2>
+
+            </div>
+
+            <p>
+                K-드라마 촬영지, 감성 로컬 골목,
+                자연 풍경, 일본인 인기 여행 루트를 중심으로
+                지역 여행을 탐색하세요.
+            </p>
+
+        </div>
+
+        <div class="card-grid">
+
+            <article class="travel-card">
+
+                <img src="https://images.unsplash.com/photo-1549692520-acc6669e2f0c?q=80&w=1200&auto=format&fit=crop">
+
+                <div class="card-content">
+
+                    <div class="badge">
+                        K-DRAMA
+                    </div>
+
+                    <h3>
+                        K-드라마 성지 여행
+                    </h3>
+
+                    <p>
+                        촬영지 기반 로컬 여행 코스와 감성 사진 스팟 제공
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article class="travel-card">
+
+                <img src="https://images.unsplash.com/photo-1514565131-fce0801e5785?q=80&w=1200&auto=format&fit=crop">
+
+                <div class="card-content">
+
+                    <div class="badge">
+                        GANGWON
+                    </div>
+
+                    <h3>
+                        강원도 바다 여행
+                    </h3>
+
+                    <p>
+                        안목해변과 로컬 카페 중심 감성 자연 여행
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article class="travel-card">
+
+                <img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200&auto=format&fit=crop">
+
+                <div class="card-content">
+
+                    <div class="badge">
+                        DAEJEON
+                    </div>
+
+                    <h3>
+                        대전 골목 탐방
+                    </h3>
+
+                    <p>
+                        현지 감성 카페와 로컬 문화 중심 여행 추천
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article class="travel-card">
+
+                <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1200&auto=format&fit=crop">
+
+                <div class="card-content">
+
+                    <div class="badge">
+                        ACCESSIBLE
+                    </div>
+
+                    <h3>
+                        배리어프리 여행
+                    </h3>
+
+                    <p>
+                        실제 이동 난이도와 접근성 중심 상세 정보 제공
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- TRANSIT -->
+
+<section id="transit">
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div>
+
+                <div class="badge">
+                    TRANSIT GUIDE
+                </div>
+
+                <h2>
+                    단계별 이동 가이드
+                </h2>
+
+            </div>
+
+            <p>
+                복잡한 한국 지역 교통을 단순한 단계별 흐름으로 제공하여
+                이동 중에도 불안을 줄여주는 UX를 제공합니다.
+            </p>
+
+        </div>
+
+        <div class="transit-wrap">
+
+            <div class="route-bar">
+
+                <div>
+
+                    <strong>
+                        서울역 → 강릉 안목해변
+                    </strong>
+
+                    <br>
+
+                    <span style="color:#62705F;font-size:0.92rem;">
+                        KTX + 버스 연계 이동
+                    </span>
+
+                </div>
+
+                <div class="route-status">
+                    정상 경로 이동 중
+                </div>
+
+            </div>
+
+            <div class="timeline">
+
+                <div class="timeline-item">
+
+                    <div class="timeline-number">
+                        1
+                    </div>
+
+                    <div>
+
+                        <h3>KTX 탑승</h3>
+
+                        <p>
+                            서울역에서 강릉역까지 이동
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="timeline-item">
+
+                    <div class="timeline-number">
+                        2
+                    </div>
+
+                    <div>
+
+                        <h3>강릉역 하차</h3>
+
+                        <p>
+                            2번 출구 이동 후 버스 정류장 확인
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="timeline-item">
+
+                    <div class="timeline-number">
+                        3
+                    </div>
+
+                    <div>
+
+                        <h3>202번 버스 탑승</h3>
+
+                        <p>
+                            7번째 정류장에서 하차 예정
+                        </p>
+
+                    </div>
+
+                </div>
+
+                <div class="timeline-item">
+
+                    <div class="timeline-number">
+                        4
+                    </div>
+
+                    <div>
+
+                        <h3>안목해변 도착</h3>
+
+                        <p>
+                            도보 3분 이동 후 목적지 도착
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="info-panel">
+
+                <div class="info-box">
+
+                    <strong>
+                        다음 버스
+                    </strong>
+
+                    8분 후 도착 예정
+
+                </div>
+
+                <div class="info-box">
+
+                    <strong>
+                        하차 알림
+                    </strong>
+
+                    2정류장 전 알림 제공
+
+                </div>
+
+                <div class="info-box">
+
+                    <strong>
+                        일본어 지원
+                    </strong>
+
+                    실시간 번역 카드 제공
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- ON SITE -->
+
+<section id="onsite">
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div>
+
+                <div class="badge">
+                    ON-SITE MODE
+                </div>
+
+                <h2>
+                    현장에서 바로 사용하는 여행 도구
+                </h2>
+
+            </div>
+
+            <p>
+                QR 리플렛 연동으로 와이파이, 버스 정보,
+                일본어 번역 카드 등을 즉시 확인할 수 있습니다.
+            </p>
+
+        </div>
+
+        <div class="card-grid">
+
+            <article class="travel-card">
+
+                <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop">
+
+                <div class="card-content">
+
+                    <div class="badge">
+                        QR CONNECT
+                    </div>
+
+                    <h3>
+                        리플렛 QR 연동
+                    </h3>
+
+                    <p>
+                        오프라인 리플렛과 모바일 페이지를 즉시 연결
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article class="travel-card">
+
+                <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop">
+
+                <div class="card-content">
+
+                    <div class="badge">
+                        COMMUNICATION
+                    </div>
+
+                    <h3>
+                        현지인 대화 카드
+                    </h3>
+
+                    <p>
+                        큰 글씨 일본어/한국어 표현으로 현장 소통 지원
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+        <div class="translation-card">
+
+            <div class="jp">
+                この場所へ行きたいです
+            </div>
+
+            <div class="kr">
+                이 장소로 가고 싶어요.
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- SOS -->
+
+<section id="sos">
+
+    <div class="container">
+
+        <div class="section-head">
+
+            <div>
+
+                <div class="badge">
+                    SOS HELP
+                </div>
+
+                <h2>
+                    예상치 못한 상황에도 빠르게 대응
+                </h2>
+
+            </div>
+
+            <p>
+                버스를 놓치거나 길을 잃었을 때
+                현재 위치 기반으로 도움 정보를 제공합니다.
+            </p>
+
+        </div>
+
+        <div class="card-grid">
+
+            <article class="travel-card">
+
+                <div class="card-content">
+
+                    <div class="badge">
+                        BUS
+                    </div>
+
+                    <h3>
+                        버스를 놓쳤어요
+                    </h3>
+
+                    <p>
+                        다음 버스 시간, 택시 예상 비용,
+                        대체 이동 경로 제공
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article class="travel-card">
+
+                <div class="card-content">
+
+                    <div class="badge">
+                        LOCATION
+                    </div>
+
+                    <h3>
+                        길을 잃었어요
+                    </h3>
+
+                    <p>
+                        가까운 도움 장소와 이동 안내 제공
+                    </p>
+
+                </div>
+
+            </article>
+
+            <article class="travel-card">
+
+                <div class="card-content">
+
+                    <div class="badge">
+                        LANGUAGE
+                    </div>
+
+                    <h3>
+                        일본어가 안 통해요
+                    </h3>
+
+                    <p>
+                        상황별 번역 표현과 현장 카드 제공
+                    </p>
+
+                </div>
+
+            </article>
+
+        </div>
+
+    </div>
+
+</section>
+
+<!-- FOOTER -->
+
+<footer class="footer">
+
+    <div class="container footer-grid">
+
+        <div>
+
+            <h3>
+                LOCAL K GUIDE
+            </h3>
+
+            <p>
+                낯선 한국 로컬 여행에서 길을 잃지 않도록 돕는 여행 동반자.
+            </p>
+
+        </div>
+
+        <div>
+
+            <h3>Pages</h3>
+
+            <ul>
+                <li>Home</li>
+                <li>Discover</li>
+                <li>Transit Guide</li>
+                <li>On-site Mode</li>
+            </ul>
+
+        </div>
+
+        <div>
+
+            <h3>Support</h3>
+
+            <ul>
+                <li>SOS Help</li>
+                <li>Barrier-free Travel</li>
+                <li>Coupons & Goods</li>
+                <li>Japanese Support</li>
+            </ul>
+
+        </div>
+
+    </div>
+
+</footer>
+
+<!-- QUICK MENU -->
+
+<div class="quick-bottom">
+
+    <div class="quick-item">
+        <span>🏠</span>
+        홈
+    </div>
+
+    <div class="quick-item">
+        <span>🚌</span>
+        이동
+    </div>
+
+    <div class="quick-item">
+        <span>📍</span>
+        현장
+    </div>
+
+    <div class="quick-item">
+        <span>🆘</span>
+        SOS
+    </div>
+
+    <div class="quick-item">
+        <span>🎁</span>
+        쿠폰
+    </div>
+
+</div>
+
+</body>
+</html>
